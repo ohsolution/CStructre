@@ -1,0 +1,3 @@
+#CSTRUCTRE
+
+* FOR 2020F_SWE3005 class
