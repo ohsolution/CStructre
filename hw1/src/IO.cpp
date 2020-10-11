@@ -11,3 +11,14 @@ IO::~IO(void)
 {
     buf.clear();
 }
+
+vector <unsigned char> * IO::getbuf(void)
+{
+    return &buf;
+}
+
+void IO::print(vector<string> * output)
+{
+    for(auto x : *output) cout << x << "\n";
+    return;
+}

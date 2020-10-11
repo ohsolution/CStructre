@@ -7,11 +7,13 @@ class IO
 {
 private:
     /* data */
-public:
     vector <unsigned char> buf;
+public:
+    
     IO(char * __arg);
     ~IO(void);
-    
+    vector <unsigned char> * getbuf(void);
+    void print(vector<string> * __output);
 };
 
 #endif /* IO.h */
