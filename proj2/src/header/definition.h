@@ -10,7 +10,7 @@
 #include <bitset>
 #include <sstream>
 #include <unordered_map>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 /* OPCODE */

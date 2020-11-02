@@ -14,6 +14,7 @@ public:
     ~IO(void);
     vector <unsigned char> * getbuf(void);
     void print(vector<string> * __output);
+    void output(vector <string> _argv,vector <int> *_reg);    
 };
 
 #endif /* IO.h */

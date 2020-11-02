@@ -6,7 +6,8 @@
 extern unordered_map<int,info> ophash;
 extern unordered_map<int,info> funhash;
 extern string regname[32];
-
+extern vector <string> ISM;
+extern vector <int> DATAM;
 
 
 

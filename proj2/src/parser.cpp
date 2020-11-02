@@ -1,5 +1,6 @@
 #include "header/parser.h"
 #include "header/definition.h"
+#include "header/memory.h"
 
 string p_buf(unsigned char t)
 {
@@ -15,55 +16,33 @@ string p_buf(unsigned char t)
 
     return ret;
 }
-
-string padding(char ch,int sz,string w)
-{
-    string ret="";
-    for(int i=w.size();i<sz;++i) ret+=ch;
-    return ret+w;
-}
-
-string BinToHex(const string &w)
-{
-    bitset<32> bits(w);
-    stringstream ss;
-    ss << hex <<  bits.to_ulong();
-    return padding('0',8,ss.str()); 
-}
-
-parser::parser(vector <unsigned char> * buff)
+parser::parser(void)
 {
     DA = new disassembler();
-    vector <unsigned char> & buf = *buff;    
-    /* // proj 1 // 
+}
+
+void parser::save_ISM(vector <unsigned char> * buff)
+{
+    vector <unsigned char> & buf = *buff;
+    
     for(int i=0;i < buf.size();i+=4)
-    {
-        string tmp = "inst ";
-        tmp += to_string(i>>2);
-        tmp += ": ";
-
+    {        
         string binary = p_buf(buf[i]) + p_buf(buf[i+1]) + p_buf(buf[i+2]) + p_buf(buf[i+3]);
-        tmp+=BinToHex(binary)+" ";
-
-        
-        int type = stoi(binary.substr(0,6),nullptr,2);
-        tmp += DA->disassem(formatSlice(binary,type));
-        ret.push_back(tmp);
+        ISM[(i>>2)] = binary;        
     }
-    */
 
-
+    return;   
 }
 
 parser::~parser()
 {
-    ret.clear();
+    delete DA;
 }
-    
-
-vector<string> * parser::getret(void)
+ 
+vector <int> parser::parsing(string inst)
 {
-    return &ret;
+    int type = stoi(inst.substr(0,6),nullptr,2);
+    return formatSlice(inst,type);
 }
 
 vector <int> parser::formatSlice(string w,int ty)
@@ -87,3 +66,4 @@ vector <int> parser::formatSlice(string w,int ty)
 
     return ret;
 }
+
