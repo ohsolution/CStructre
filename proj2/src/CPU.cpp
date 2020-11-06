@@ -16,13 +16,18 @@ CPU::~CPU()
     reg.clear();
 }
 
-vector <int> * CPU::getreg(void) {return &reg;}
+vector <int> CPU::getinfo(void) 
+{
+    vector <int> tmp(33);
+    for(int i= 0 ; i<32 ; ++i) tmp[i] = reg[i]; 
+    tmp[32] = pc;
+    return tmp;
+}
 
 bool CPU::run()
 {
     while(N--&&fetch())
-    {
-        
+    {        
         if(curinst == "00000000000000000000000000000000") continue; //nop
         
         vector<int> vt = Parser->parsing(curinst);
@@ -112,7 +117,7 @@ bool CPU::run()
             }
         }                
     }
-
+    
     return N==-1;
 }
 

@@ -18,7 +18,7 @@ public:
     ~CPU(void);
     bool run(void);
     bool fetch(void);
-    vector <int> * getreg(void);
+    vector <int> getinfo(void);
 };
 
 

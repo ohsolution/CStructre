@@ -31,6 +31,12 @@ using namespace std;
 #define SYSTEMCALL 8
 #define JUMPLR 9
 
+/* PRINTMODE */
+#define NOPRINT 1
+#define REGPRINT 2
+#define MEMPRINT 3
+
+
 struct info
 {
     string is;
