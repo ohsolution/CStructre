@@ -5,14 +5,12 @@
 
 ## PROJ2 strategy
 
-* FIRST : Input binary file and parsing to string vector form and save to IS memory
-
-* SECOND : cpu fatch instruction one by one from IS memory and run instruction with branch
-
-* THIRD : From taken argument, output result to proper from
-
-_NEEDED MEMORY ADDRESSING FOR ISMEMORY(>>=2),DATAMEMORY,REGISTER-VALUE(hash)_
+ALL OF FLOW in main fucntion 6 line
 
 
+
+## FLOW AND FILE RELATION
+
+![image](https://user-images.githubusercontent.com/43700074/98319498-3b419f80-2024-11eb-9822-15e199958fd9.png)
 
 
