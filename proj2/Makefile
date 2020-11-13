@@ -1,7 +1,7 @@
 # Makefile
 
 COMP = g++
-TARGET = mips_sim
+TARGET = mips-sim
 D=src/
 OBJECTS= $(D)main.cpp $(D)IO.cpp $(D)parser.cpp $(D)disassembler.cpp $(D)memory.cpp $(D)CPU.cpp
 OBJ=main.o IO.o parser.o disassembler.o memory.o CPU.o

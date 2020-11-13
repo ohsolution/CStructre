@@ -1,0 +1,3 @@
+Usage:
+./mips-sim input_file_name #_of_instrs_to_execute [output_options]
+output_options: reg | mem start_address #_of_words_to_print
