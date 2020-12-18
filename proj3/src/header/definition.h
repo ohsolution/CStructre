@@ -1,0 +1,69 @@
+#ifndef _DEFINITION_H
+#define _DEFINITION_H 1
+
+
+/* Standard Libary header */
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <bitset>
+#include <sstream>
+#include <unordered_map>
+#include <bits/stdc++.h>
+using namespace std;
+
+/* OPCODE */
+#define ARITHI 1
+#define LOADI 2
+#define BRANCH 3
+#define LOADSTORE 4
+#define JUMP 5
+
+ /* FUNCTCODE */
+#define ARITH 1
+#define DIVMUL 2
+#define SHIFT 3
+#define SHIFTV 4
+#define JUMPR 5
+#define MOVEFROM 6
+#define MOVETO 7
+#define SYSTEMCALL 8
+#define JUMPLR 9
+
+/* PRINTMODE */
+#define NOPRINT 1
+#define REGPRINT 2
+#define MEMPRINT 3
+
+
+struct info
+{
+    string is;
+    int ty;
+};
+
+
+enum TYPE
+{
+    RTYPE =1,
+    ITYPE,
+    JTYPE
+};
+
+struct INST
+{
+    TYPE tp;
+    int code;
+    int *rs;
+    int *rd;
+    int *rt;
+    int rsv,rdv,rtv;
+    int imm,uimm,shamt;
+    int address,wval;
+};
+
+
+
+
+#endif /* definition.h */
