@@ -55,7 +55,7 @@ INST PIPE_ID::exec()
 {
     vector <int> vt = Parser->parsing(instr); // parsing    
 
-    
+    //cout << "str : " << instr << endl;
     
     if(vt[0] == 2)
     {
@@ -64,21 +64,24 @@ INST PIPE_ID::exec()
         instr[4] = '0';        
         inst.rsv = (Parser->parsing(instr))[1];
         instr[4] = '1';
+        inst.regWrite = false;
     }
     else if(vt[0])
     {
-        inst.tp = ITYPE;
+        inst.tp = ITYPE;        
         inst.code = vt[0];
         inst.rs = &(cpu->reg[vt[1]]);
         inst.rt = &(cpu->reg[vt[2]]);
         inst.rsv = *inst.rs;
         inst.rtv = *inst.rt;
         inst.imm = vt[3];
-        inst.uimm = vt[3] + (1<<15) * !!( vt[3] &(1<<15));
+        inst.regWrite = !(inst.code == 43 || inst.code == 4 || inst.code==5);
+        if(ophash.find(inst.code) == ophash.end()) inst.regWrite = false;
+        inst.uimm = 0;
+        for(int i=0;i<16;++i) inst.uimm |= (vt[3] & (1 << i));
     }
     else
     {
-        
         inst.tp = RTYPE;
         inst.code = vt.back();
         inst.rs = &(cpu->reg[vt[1]]);
@@ -87,13 +90,9 @@ INST PIPE_ID::exec()
         inst.rsv = *inst.rs;
         inst.rtv = *inst.rt;
         inst.rdv = *inst.rd;
+        inst.regWrite  = true;
+        if(funhash.find(inst.code) == funhash.end()) inst.regWrite = false;
     }
-
-    info x = vt[0] ? ophash[vt[0]] : funhash[vt.back()];
-
-    cout << x.is <<" $"<<vt[2] << " $" << vt[1] << " " << inst.imm<<endl;
-
-    cout << inst.rtv << " "<< inst.rsv << " "<<endl;
 
     cpu->checksum = (cpu->checksum << 1 | (int)((unsigned int)cpu->checksum >> 31)) ^ inst.rsv;
 
@@ -132,7 +131,7 @@ INST PIPE_EX::exec()
         case 43: //sw
             inst.wval = inst.rtv;
             inst.address = ((inst.rsv+inst.imm-0x10000000)>>2);//DATAM[((rsv+imm-0x10000000)>>2)] = rtv;
-            break;    
+            break;            
         default:
             break;
         }        
@@ -176,10 +175,12 @@ INST PIPE_MEM::exec()
         {   
         case 35: //lw
             inst.wval = DATAM[inst.address];
+            //cout<<endl << "load : " << inst.wval << " from " << inst.address<<endl;
             break;
 
         case 43: //sw
             DATAM[inst.address] = inst.wval;
+            //cout<<endl << "save : " << inst.wval << " to " << inst.address << endl;;
             break;    
         default:
             break;

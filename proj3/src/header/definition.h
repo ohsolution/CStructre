@@ -46,21 +46,26 @@ struct info
 
 enum TYPE
 {
-    RTYPE =1,
+    DEFAULT,
+    RTYPE ,
     ITYPE,
     JTYPE
 };
 
 struct INST
 {
-    TYPE tp;
-    int code;
+    TYPE tp = DEFAULT;
+    bool regWrite=false;
+    int code=0;
     int *rs;
     int *rd;
     int *rt;
-    int rsv,rdv,rtv;
+    int rsv=0;
+    int rdv=0;
+    int rtv=0;
+    int wval = 0;
     int imm,uimm,shamt;
-    int address,wval;
+    int address;
 };
 
 

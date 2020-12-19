@@ -51,10 +51,9 @@ void IO::output(vector <string> argv,int tp,vector <int> regpc)
 {
     if(tp==NOPRINT) return;    
 
-    cout << "Checksum: " << dec_to_hex(regpc[33])<<"\n";
-
     if(tp==REGPRINT)
     {
+        cout << "Checksum: " << dec_to_hex(regpc[33])<<"\n";
         for(int i=0;i<32;++i) cout << regname[i] <<": "<<dec_to_hex(regpc[i])<<"\n";
         cout << "PC: " << dec_to_hex(regpc[32]) <<"\n";
         return;

@@ -11,9 +11,8 @@ class PIPE
 {
 protected:    
     CPU * cpu;
-    INST inst;
-    
 public:
+    INST inst;
     bool vaild;
     PIPE(CPU * _cpu);
     void Set_inst(INST _inst);
@@ -32,9 +31,9 @@ public:
 class PIPE_ID : public PIPE 
 {
 private:
-    parser * Parser;
-    string instr;
+    parser * Parser;    
 public:
+    string instr;
     PIPE_ID(CPU * _cpu);
     ~PIPE_ID();
     INST exec();

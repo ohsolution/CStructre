@@ -9,6 +9,7 @@ class PIPE_ID;
 class PIPE_EX;
 class PIPE_MEM;
 class PIPE_WB;
+class PIPE;
 
 class CPU
 {
@@ -24,9 +25,11 @@ public:
     
     CPU(int _NumOfCycle);
     ~CPU(void);
-    bool run(void);    
+    void run(void);    
     vector <int> getinfo(void);
-
+    void addBubble(PIPE *p1,PIPE *p2);
+    void showinfo(INST it);
+    void showpipe(void);
     //bool fetch(void);
 };
 
