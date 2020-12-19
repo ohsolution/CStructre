@@ -1,8 +1,0 @@
-Files ret1.txt and out1.txt are identical
-Files ret2.txt and out2.txt are identical
-Files ret3.txt and out3.txt are identical
-Files ret4.txt and out4.txt are identical
-Files ret5.txt and out5.txt are identical
-Files ret6.txt and out6.txt are identical
-Files ret7.txt and out7.txt are identical
-Files ret8.txt and out8.txt are identical
